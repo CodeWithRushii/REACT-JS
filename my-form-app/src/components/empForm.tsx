@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function EmpForm() {
+function EmpForm( {employees, setEmployees}) {
 
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
@@ -13,17 +13,31 @@ function EmpForm() {
     const [city, setCity] = useState("");
     const [address, setAddress] = useState("");
 
-    const [error, setError] = useState({
-        f_name: "",
-        email: "",
-        phone: ""
-    });
+    const [error, setError] = useState<any>({});
+
+    type empType = {
+        fName: string;
+        lName: string;
+        email: string;
+        phone: string;
+        salary: string;
+        department: string;
+        gender: string;
+        hobby: string[];
+        city: string;
+        address: string;
+    };
+
 
     const allHobby = ["Reading", "Gaming", "Sports", "Music", "Other"];
     const allCity = ["Surat", "Rajkot", "Mumbai", "UP", "Bihar"];
     const departments = ["IT", "HR", "Finance", "Marketing"];
 
-    const handleHobby = (e: any) => {
+    useEffect(() => {
+        localStorage.setItem("employees", JSON.stringify(employees));
+    }, [employees]);
+
+    const hobbys = (e: any) => {
         const value = e.target.value;
         const checked = e.target.checked;
 
@@ -34,26 +48,46 @@ function EmpForm() {
         }
     };
 
-    const handleSubmit = (e: any) => {
+    // ✅ Validation
+    const validation = () => {
+        let newError: any = {};
+
+        if (!fName) newError.f_name = "Required";
+        if (!lName) newError.l_name = "Required";
+
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!email) {
+            newError.email = "Email is required";
+        } else if (!emailPattern.test(email)) {
+            newError.email = "Invalid email";
+        }
+
+        const phonePattern = /^(\+91[\-\s]?)?[0]?[6789]\d{9}$/;
+        if (!phone) {
+            newError.phone = "Phone is required";
+        } else if (!phonePattern.test(phone)) {
+            newError.phone = "Invalid phone";
+        }
+
+        if (!salary) newError.salary = "Required";
+        if (!department) newError.department = "Required";
+        if (!gender) newError.gender = "Required";
+        if (hobby.length === 0) newError.hobby = "Required";
+        if (!city) newError.city = "Required";
+        if (!address) newError.address = "Required";
+
+        setError(newError);
+        return Object.keys(newError).length === 0;
+    };
+
+    const submit = (e: any) => {
         e.preventDefault();
 
-        let err = {
-            f_name: "",
-            email: "",
-            phone: ""
-        };
+        if (!validation()) return;
 
-        if (fName === "") err.f_name = "First name required";
-        if (email === "") err.email = "Email required";
-        if (phone === "") err.phone = "Phone required";
-
-        setError(err);
-
-        if (err.f_name || err.email || err.phone) return;
-
-        const empData = {
-            first_name: fName,
-            last_name: lName,
+        const empData: empType = {
+            fName,
+            lName,
             email,
             phone,
             salary,
@@ -64,9 +98,9 @@ function EmpForm() {
             address
         };
 
-        const oldData = JSON.parse(localStorage.getItem("employees") || "[]");
-        localStorage.setItem("employees", JSON.stringify([...oldData, empData]));
+        setEmployees(prev => [...prev, empData]);
 
+        // reset
         setFName("");
         setLName("");
         setEmail("");
@@ -77,154 +111,170 @@ function EmpForm() {
         setHobby([]);
         setCity("");
         setAddress("");
+        setError({});
     };
 
-    return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-4">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 w-full max-w-4xl border border-white/50">
+    return <>
 
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-8">
-                    <div className="h-10 w-2 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full"></div>
-                    <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 to-purple-800">
-                        Employee Registration
-                    </h1>
+
+        <div className="flex items-center gap-3 mb-10">
+            <div className="h-10 w-2  bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full"></div>
+            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 to-purple-800">
+                Employee Registration
+            </h1>
+        </div>
+
+        <form onSubmit={submit} className="space-y-6">
+
+            {/* Name */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <input
+                        placeholder="First Name"
+                        value={fName}
+                        onChange={(e) => setFName(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.f_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                    />
+                    <p className="text-red-500 text-sm mt-1">{error.f_name}</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                    <input
+                        placeholder="Last Name"
+                        value={lName}
+                        onChange={(e) => setLName(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.l_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                    />
+                    <p className="text-red-500 text-sm mt-1">{error.l_name}</p>
+                </div>
+            </div>
 
-                    {/* Name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <input
-                                placeholder="First Name"
-                                value={fName}
-                                onChange={(e) => setFName(e.target.value)}
-                                className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                            />
-                            <p className="text-red-500 text-sm mt-1">{error.f_name}</p>
-                        </div>
+            {/* Email + Phone */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <input
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.email ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                    />
+                    <p className="text-red-500 text-sm mt-1">{error.email}</p>
+                </div>
 
-                        <input
-                            placeholder="Last Name"
-                            value={lName}
-                            onChange={(e) => setLName(e.target.value)}
-                            className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                        />
-                    </div>
+                <div>
+                    <input
+                        placeholder="Phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.phone ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                    />
+                    <p className="text-red-500 text-sm mt-1">{error.phone}</p>
+                </div>
+            </div>
 
-                    {/* Email + Phone */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <input
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                            />
-                            <p className="text-red-500 text-sm mt-1">{error.email}</p>
-                        </div>
+            {/* Salary + Department */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <input
+                        placeholder="Salary"
+                        value={salary}
+                        onChange={(e) => setSalary(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.salary ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                    />
+                    <p className="text-red-500 text-sm mt-1">{error.salary}</p>
+                </div>
 
-                        <div>
-                            <input
-                                placeholder="Phone"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                            />
-                            <p className="text-red-500 text-sm mt-1">{error.phone}</p>
-                        </div>
-                    </div>
-
-                    {/* Salary + Department */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input
-                            placeholder="Salary"
-                            value={salary}
-                            onChange={(e) => setSalary(e.target.value)}
-                            className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                        />
-
-                        <select
-                            value={department}
-                            onChange={(e) => setDepartment(e.target.value)}
-                            className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                        >
-                            <option value="">Select Department</option>
-                            {departments.map((d, i) => (
-                                <option key={i} value={d}>{d}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* City */}
+                <div>
                     <select
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.department ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
                     >
-                        <option value="">Select City</option>
-                        {allCity.map((c, i) => (
-                            <option key={i}>{c}</option>
+                        <option value="">Select Department</option>
+                        {departments.map((d, i) => (
+                            <option key={i} value={d}>{d}</option>
                         ))}
                     </select>
-
-                    {/* Hobby */}
-                    <div>
-                        <p className="font-semibold text-indigo-900 mb-3">Hobbies</p>
-                        <div className="flex flex-wrap gap-4">
-                            {allHobby.map((h, i) => (
-                                <label key={i} className="flex items-center gap-2 bg-indigo-50/30 px-4 py-2 rounded-full border border-indigo-200 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        value={h}
-                                        checked={hobby.includes(h)}
-                                        onChange={handleHobby}
-                                         />
-                                    <span className="text-sm text-indigo-800">{h}</span>
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Gender */}
-                    <div>
-                        <p className="font-semibold text-indigo-900 mb-3">Gender</p>
-                        <div className="flex gap-4">
-                            {["Male", "Female", "Other"].map(g => (
-                                <label key={g} className="flex items-center gap-2 bg-indigo-50/30 px-5 py-2 rounded-full border border-indigo-200 cursor-pointer">
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        value={g}
-                                        checked={gender === g}
-                                        onChange={(e) => setGender(e.target.value)}
-                                    />
-                                    <span className="text-sm text-indigo-800">{g}</span>
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Address */}
-                    <textarea
-                        placeholder="Address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="w-full px-4 py-3 bg-indigo-50/50 border border-indigo-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
-                    />
-
-                    {/* Submit */}
-                    <div className="flex justify-end pt-4">
-                        <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition">
-                            Submit Application
-                        </button>
-                    </div>
-
-                </form>
+                    <p className="text-red-500 text-sm mt-1">{error.department}</p>
+                </div>
             </div>
-        </div>
-    );
+
+            {/* City */}
+            <div>
+                <select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.city ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                >
+                    <option value="">Select City</option>
+                    {allCity.map((c, i) => (
+                        <option key={i} value={c}>{c}</option>
+                    ))}
+                </select>
+                <p className="text-red-500 text-sm mt-1">{error.city}</p>
+            </div>
+
+            {/* Hobby */}
+            <div>
+                <p className="font-semibold text-indigo-900 mb-3">Hobbies</p>
+                <div className={`flex flex-wrap gap-4 border p-3 rounded-xl ${error.hobby ? "border-red-500" : "border-indigo-200"}`}>
+                    {allHobby.map((h, i) => (
+                        <label key={i} className="flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-200 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                value={h}
+                                checked={hobby.includes(h)}
+                                onChange={hobbys}
+                            />
+                            <span className="text-sm">{h}</span>
+                        </label>
+                    ))}
+                </div>
+                <p className="text-red-500 text-sm mt-1">{error.hobby}</p>
+            </div>
+
+            {/* Gender */}
+            <div>
+                <p className="font-semibold text-indigo-900 mb-3">Gender</p>
+                <div className={`flex gap-4 border p-3 rounded-xl ${error.gender ? "border-red-500" : "border-indigo-200"}`}>
+                    {["Male", "Female", "Other"].map(g => (
+                        <label key={g} className="flex items-center gap-2 px-5 py-2 rounded-full border border-indigo-200 cursor-pointer">
+                            <input
+                                type="radio"
+                                name="gender"
+                                value={g}
+                                checked={gender === g}
+                                onChange={(e) => setGender(e.target.value)}
+                            />
+                            <span className="text-sm">{g}</span>
+                        </label>
+                    ))}
+                </div>
+                <p className="text-red-500 text-sm mt-1">{error.gender}</p>
+            </div>
+
+            {/* Address */}
+            <div>
+                <textarea
+                    placeholder="Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.address ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
+                />
+                <p className="text-red-500 text-sm mt-1">{error.address}</p>
+            </div>
+
+            {/* Submit */}
+            <div className="flex justify-end pt-4">
+                <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl">
+                    Submit Application
+                </button>
+            </div>
+
+        </form>
+    </>
 }
 
 export default EmpForm;
+
+
