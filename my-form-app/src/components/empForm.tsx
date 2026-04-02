@@ -1,6 +1,22 @@
 import { useEffect, useState } from "react";
+import type { empType } from "../utils/global";
+import { toast } from "react-toastify";
 
-function EmpForm( {employees, setEmployees}) {
+type props = {
+    employees: empType[];
+    setEmployees: (value: React.SetStateAction<empType[]>) => void;
+    editEmployee?: empType;
+    editIndex: number | null;
+    setEditIndex: (value: React.SetStateAction<number | null>) => void;
+};
+
+function EmpForm({
+    employees,
+    setEmployees,
+    editEmployee,
+    editIndex,
+    setEditIndex
+}: props) {
 
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
@@ -15,27 +31,30 @@ function EmpForm( {employees, setEmployees}) {
 
     const [error, setError] = useState<any>({});
 
-    type empType = {
-        fName: string;
-        lName: string;
-        email: string;
-        phone: string;
-        salary: string;
-        department: string;
-        gender: string;
-        hobby: string[];
-        city: string;
-        address: string;
-    };
-
-
     const allHobby = ["Reading", "Gaming", "Sports", "Music", "Other"];
     const allCity = ["Surat", "Rajkot", "Mumbai", "UP", "Bihar"];
     const departments = ["IT", "HR", "Finance", "Marketing"];
 
+    // localStorage
     useEffect(() => {
         localStorage.setItem("employees", JSON.stringify(employees));
     }, [employees]);
+
+    // edit autofill
+    useEffect(() => {
+        if (editEmployee) {
+            setFName(editEmployee.fName);
+            setLName(editEmployee.lName);
+            setEmail(editEmployee.email);
+            setPhone(editEmployee.phone);
+            setSalary(editEmployee.salary);
+            setDepartment(editEmployee.department);
+            setGender(editEmployee.gender);
+            setHobby(editEmployee.hobby);
+            setCity(editEmployee.city);
+            setAddress(editEmployee.address);
+        }
+    }, [editEmployee]);
 
     const hobbys = (e: any) => {
         const value = e.target.value;
@@ -48,12 +67,15 @@ function EmpForm( {employees, setEmployees}) {
         }
     };
 
-    // ✅ Validation
     const validation = () => {
-        let newError: any = {};
+        let newError  = {};
 
-        if (!fName) newError.f_name = "Required";
-        if (!lName) newError.l_name = "Required";
+        if (!fName) {
+            newError.f_name = "Required";
+        }
+        if (!lName) {
+            newError.l_name = "Required";
+        }
 
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!email) {
@@ -69,12 +91,24 @@ function EmpForm( {employees, setEmployees}) {
             newError.phone = "Invalid phone";
         }
 
-        if (!salary) newError.salary = "Required";
-        if (!department) newError.department = "Required";
-        if (!gender) newError.gender = "Required";
-        if (hobby.length === 0) newError.hobby = "Required";
-        if (!city) newError.city = "Required";
-        if (!address) newError.address = "Required";
+        if (!salary) {
+            newError.salary = "Required";
+        }
+        if (!department) {
+            newError.department = "Required";
+        }
+        if (!gender) {
+            newError.gender = "Required";
+        }
+        if (hobby.length === 0) {
+            newError.hobby = "Required";
+        }
+        if (!city) {
+            newError.city = "Required";
+        }
+        if (!address) {
+            newError.address = "Required";
+        }
 
         setError(newError);
         return Object.keys(newError).length === 0;
@@ -83,7 +117,10 @@ function EmpForm( {employees, setEmployees}) {
     const submit = (e: any) => {
         e.preventDefault();
 
-        if (!validation()) return;
+        if (!validation() ) {
+            return;
+
+        }
 
         const empData: empType = {
             fName,
@@ -98,7 +135,18 @@ function EmpForm( {employees, setEmployees}) {
             address
         };
 
-        setEmployees(prev => [...prev, empData]);
+        if (editIndex !== null) {
+            // update
+            const updated = [...employees];
+            updated[editIndex] = empData;
+            setEmployees(updated);
+            setEditIndex(null);
+            toast.success("Employee updated successfully...");
+        } else {
+            // insert
+            setEmployees(prev => [...prev, empData]);
+            toast.success("Employee added successfully...");
+        }
 
         // reset
         setFName("");
@@ -116,7 +164,6 @@ function EmpForm( {employees, setEmployees}) {
 
     return <>
 
-
         <div className="flex items-center gap-3 mb-10">
             <div className="h-10 w-2  bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full"></div>
             <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 to-purple-800">
@@ -129,22 +176,16 @@ function EmpForm( {employees, setEmployees}) {
             {/* Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <input
-                        placeholder="First Name"
-                        value={fName}
+                    <input placeholder="First Name" value={fName}
                         onChange={(e) => setFName(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.f_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    />
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.f_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                     <p className="text-red-500 text-sm mt-1">{error.f_name}</p>
                 </div>
 
                 <div>
-                    <input
-                        placeholder="Last Name"
-                        value={lName}
+                    <input placeholder="Last Name" value={lName}
                         onChange={(e) => setLName(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.l_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    />
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.l_name ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                     <p className="text-red-500 text-sm mt-1">{error.l_name}</p>
                 </div>
             </div>
@@ -152,22 +193,16 @@ function EmpForm( {employees, setEmployees}) {
             {/* Email + Phone */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <input
-                        placeholder="Email"
-                        value={email}
+                    <input placeholder="Email" value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.email ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    />
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.email ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                     <p className="text-red-500 text-sm mt-1">{error.email}</p>
                 </div>
 
                 <div>
-                    <input
-                        placeholder="Phone"
-                        value={phone}
+                    <input placeholder="Phone" value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.phone ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    />
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.phone ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                     <p className="text-red-500 text-sm mt-1">{error.phone}</p>
                 </div>
             </div>
@@ -175,21 +210,16 @@ function EmpForm( {employees, setEmployees}) {
             {/* Salary + Department */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <input
-                        placeholder="Salary"
-                        value={salary}
+                    <input placeholder="Salary" value={salary}
                         onChange={(e) => setSalary(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.salary ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    />
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.salary ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                     <p className="text-red-500 text-sm mt-1">{error.salary}</p>
                 </div>
 
                 <div>
-                    <select
-                        value={department}
+                    <select value={department}
                         onChange={(e) => setDepartment(e.target.value)}
-                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.department ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                    >
+                        className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.department ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}>
                         <option value="">Select Department</option>
                         {departments.map((d, i) => (
                             <option key={i} value={d}>{d}</option>
@@ -201,11 +231,9 @@ function EmpForm( {employees, setEmployees}) {
 
             {/* City */}
             <div>
-                <select
-                    value={city}
+                <select value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.city ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                >
+                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.city ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}>
                     <option value="">Select City</option>
                     {allCity.map((c, i) => (
                         <option key={i} value={c}>{c}</option>
@@ -220,12 +248,9 @@ function EmpForm( {employees, setEmployees}) {
                 <div className={`flex flex-wrap gap-4 border p-3 rounded-xl ${error.hobby ? "border-red-500" : "border-indigo-200"}`}>
                     {allHobby.map((h, i) => (
                         <label key={i} className="flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-200 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                value={h}
+                            <input type="checkbox" value={h}
                                 checked={hobby.includes(h)}
-                                onChange={hobbys}
-                            />
+                                onChange={hobbys} />
                             <span className="text-sm">{h}</span>
                         </label>
                     ))}
@@ -239,13 +264,9 @@ function EmpForm( {employees, setEmployees}) {
                 <div className={`flex gap-4 border p-3 rounded-xl ${error.gender ? "border-red-500" : "border-indigo-200"}`}>
                     {["Male", "Female", "Other"].map(g => (
                         <label key={g} className="flex items-center gap-2 px-5 py-2 rounded-full border border-indigo-200 cursor-pointer">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value={g}
+                            <input type="radio" name="gender" value={g}
                                 checked={gender === g}
-                                onChange={(e) => setGender(e.target.value)}
-                            />
+                                onChange={(e) => setGender(e.target.value)} />
                             <span className="text-sm">{g}</span>
                         </label>
                     ))}
@@ -255,19 +276,16 @@ function EmpForm( {employees, setEmployees}) {
 
             {/* Address */}
             <div>
-                <textarea
-                    placeholder="Address"
-                    value={address}
+                <textarea placeholder="Address" value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.address ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`}
-                />
+                    className={`w-full px-4 py-3 bg-indigo-50/50 border ${error.address ? "border-red-500" : "border-indigo-200"} rounded-xl outline-none`} />
                 <p className="text-red-500 text-sm mt-1">{error.address}</p>
             </div>
 
             {/* Submit */}
             <div className="flex justify-end pt-4">
                 <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl">
-                    Submit Application
+                    {editIndex !== null ? "Update Employee" : "Submit Application"}
                 </button>
             </div>
 
@@ -276,5 +294,3 @@ function EmpForm( {employees, setEmployees}) {
 }
 
 export default EmpForm;
-
-
