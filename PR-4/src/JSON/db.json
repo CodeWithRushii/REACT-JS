@@ -1,0 +1,555 @@
+{
+  "product": [
+    {
+      "id": "E001_El",
+      "p_name": "iPhone 17 Pro",
+      "p_price": 75000,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "iPhone 17 Pro. Center Stage front camera. A19 chip. 6.3″ ProMotion display with Dynamic Island."
+    },
+    {
+      "id": "E002_Fa",
+      "p_name": "Premium Cotton T-Shirt",
+      "p_price": 750,
+      "p_stock": 35,
+      "p_image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Premium organic cotton t-shirt with sustainable fabric and modern fit."
+    },
+    {
+      "id": "E003_HL",
+      "p_name": "Velvet Throw Pillows",
+      "p_price": 300,
+      "p_stock": 45,
+      "p_image": "https://images.unsplash.com/photo-1579656335362-972993a233bc?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "Luxurious velvet throw pillows with removable covers for easy care."
+    },
+    {
+      "id": "E004_El",
+      "p_name": "Wireless Gaming Mouse",
+      "p_price": 2500,
+      "p_stock": 25,
+      "p_image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "High-precision gaming mouse with RGB lighting and 20,000 DPI sensor."
+    },
+    {
+      "id": "E005_Fa",
+      "p_name": "Designer Leather Handbag",
+      "p_price": 4200,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1584917033904-493bb3ce3ea1?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Handcrafted genuine leather handbag with gold-plated hardware."
+    },
+    {
+      "id": "E006_HL",
+      "p_name": "Smart LED Desk Lamp",
+      "p_price": 1200,
+      "p_stock": 30,
+      "p_image": "https://images.unsplash.com/photo-1534073828943-f801091bb18c?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "Adjustable LED desk lamp with touch controls and USB charging port."
+    },
+    {
+      "id": "E007_Sp",
+      "p_name": "Professional Tennis Racket",
+      "p_price": 5500,
+      "p_stock": 12,
+      "p_image": "https://images.unsplash.com/photo-1617083934555-ac7d4fee8939?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional grade tennis racket with carbon fiber frame and vibration dampening."
+    },
+    {
+      "id": "E008_Fa",
+      "p_name": "Silk Evening Dress",
+      "p_price": 3500,
+      "p_stock": 20,
+      "p_image": "https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Elegant silk evening dress with hand-beaded details and flowing silhouette."
+    },
+    {
+      "id": "E009_El",
+      "p_name": "4K Webcam",
+      "p_price": 4500,
+      "p_stock": 40,
+      "p_image": "https://images.unsplash.com/photo-1626245914511-2f78696ec09b?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Ultra HD 4K webcam with auto-focus and noise reduction technology."
+    },
+    {
+      "id": "E010_Fa",
+      "p_name": "Vintage Denim Jacket",
+      "p_price": 2800,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Classic vintage-style denim jacket with modern comfort features."
+    },
+    {
+      "id": "E011_HL",
+      "p_name": "Ceramic Dinnerware Set",
+      "p_price": 1800,
+      "p_stock": 25,
+      "p_image": "https://images.unsplash.com/photo-1544986581-efac024faf62?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "Handcrafted ceramic dinnerware set for 6 people with modern minimalist design."
+    },
+    {
+      "id": "E012_Sp",
+      "p_name": "Yoga Mat Premium",
+      "p_price": 1500,
+      "p_stock": 35,
+      "p_image": "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Extra thick premium yoga mat with alignment lines and carrying strap."
+    },
+    {
+      "id": "E013_Fa",
+      "p_name": "Cashmere Scarf",
+      "p_price": 1800,
+      "p_stock": 30,
+      "p_image": "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Luxurious 100% cashmere scarf with hand-finished edges for ultimate softness."
+    },
+    {
+      "id": "E014_El",
+      "p_name": "Mechanical Keyboard RGB",
+      "p_price": 6500,
+      "p_stock": 22,
+      "p_image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Premium mechanical keyboard with per-key RGB backlighting and Cherry MX switches."
+    },
+    {
+      "id": "E015_Fa",
+      "p_name": "Linen Summer Shirt",
+      "p_price": 1200,
+      "p_stock": 40,
+      "p_image": "https://images.unsplash.com/photo-1594932224010-388719098363?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Breathable linen shirt perfect for summer with relaxed fit."
+    },
+    {
+      "id": "E016_El",
+      "p_name": "Smart Thermostat",
+      "p_price": 2200,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1567000249110-302456f96614?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "WiFi-enabled smart thermostat with touch display and energy saving features."
+    },
+    {
+      "id": "E017_Sp",
+      "p_name": "Carbon Fiber Bike",
+      "p_price": 45000,
+      "p_stock": 8,
+      "p_image": "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Ultra-light carbon fiber racing bike with Shimano components."
+    },
+    {
+      "id": "E018_Fa",
+      "p_name": "Wool Blend Coat",
+      "p_price": 3200,
+      "p_stock": 12,
+      "p_image": "https://images.unsplash.com/photo-1539533377285-a92cc86ecb35?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Premium wool blend coat with water-resistant treatment and thermal lining."
+    },
+    {
+      "id": "E019_HL",
+      "p_name": "Air Purifier",
+      "p_price": 3500,
+      "p_stock": 28,
+      "p_image": "https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "HEPA filter air purifier with quiet operation and smart sensors."
+    },
+    {
+      "id": "E020_Sp",
+      "p_name": "Running Shoes Professional",
+      "p_price": 5500,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional running shoes with advanced cushioning and carbon fiber plate."
+    },
+    {
+      "id": "E021_Fa",
+      "p_name": "Silk Blouse",
+      "p_price": 2500,
+      "p_stock": 25,
+      "p_image": "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Elegant silk blouse with delicate embroidery and French cuffs."
+    },
+    {
+      "id": "E022_El",
+      "p_name": "Gaming Chair RGB",
+      "p_price": 8000,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1598550476439-6847785fce66?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Ergonomic gaming chair with RGB lighting, lumbar support, and 4D armrests."
+    },
+    {
+      "id": "E023_Sp",
+      "p_name": "Tennis Ball Machine",
+      "p_price": 1200,
+      "p_stock": 20,
+      "p_image": "https://images.unsplash.com/photo-1624364177579-f52988454178?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional tennis ball machine with multiple speed settings and oscillation."
+    },
+    {
+      "id": "E024_Fa",
+      "p_name": "Linen Pants",
+      "p_price": 1800,
+      "p_stock": 30,
+      "p_image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Comfortable linen pants with modern fit and breathable fabric."
+    },
+    {
+      "id": "E025_El",
+      "p_name": "Tablet Pro 12.9",
+      "p_price": 65000,
+      "p_stock": 6,
+      "p_image": "https://images.unsplash.com/photo-1561154418-522f2a58518b?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Professional tablet with M2 chip, 12.9\" Liquid Retina XDR display, and all-day battery life."
+    },
+    {
+      "id": "E026_Sp",
+      "p_name": "Mountain Bike Full Suspension",
+      "p_price": 35000,
+      "p_stock": 5,
+      "p_image": "https://images.unsplash.com/photo-1532298229144-0ee0c9e9ad58?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Full suspension mountain bike with hydraulic disc brakes and 27-speed drivetrain."
+    },
+    {
+      "id": "E027_Fa",
+      "p_name": "Cashmere Sweater",
+      "p_price": 2800,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Ultra-soft cashmere sweater with ribbed cuffs and turtleneck design."
+    },
+    {
+      "id": "E028_El",
+      "p_name": "Robot Vacuum Cleaner",
+      "p_price": 25000,
+      "p_stock": 12,
+      "p_image": "https://images.unsplash.com/photo-1569698134101-f15cde5cd66c?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Smart robot vacuum with LiDAR navigation, self-emptying, and app control."
+    },
+    {
+      "id": "E029_Sp",
+      "p_name": "Golf Club Set",
+      "p_price": 3500,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Complete golf club set with graphite shafts and premium grips."
+    },
+    {
+      "id": "E030_Fa",
+      "p_name": "Designer Sunglasses",
+      "p_price": 3000,
+      "p_stock": 35,
+      "p_image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Designer sunglasses with UV400 protection and polarized lenses."
+    },
+    {
+      "id": "E031_El",
+      "p_name": "Smart Doorbell",
+      "p_price": 1800,
+      "p_stock": 22,
+      "p_image": "https://images.unsplash.com/photo-1558002038-103792e07927?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Video doorbell with motion detection, two-way audio, and smartphone integration."
+    },
+    {
+      "id": "E032_Sp",
+      "p_name": "Swimming Goggles Pro",
+      "p_price": 800,
+      "p_stock": 45,
+      "p_image": "https://images.unsplash.com/photo-1551927336-09d50efd69cd?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional swimming goggles with anti-fog coating and UV protection."
+    },
+    {
+      "id": "E033_Fa",
+      "p_name": "Leather Wallet",
+      "p_price": 1500,
+      "p_stock": 40,
+      "p_image": "https://images.unsplash.com/photo-1627126580552-f4f54406ee9a?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Genuine leather bifold wallet with RFID blocking technology."
+    },
+    {
+      "id": "E034_HL",
+      "p_name": "Coffee Maker Deluxe",
+      "p_price": 2200,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1495474472287-2d2d2d63343?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "Programmable coffee maker with built-in grinder and thermal carafe."
+    },
+    {
+      "id": "E035_Sp",
+      "p_name": "Tennis Shoes Clay Court",
+      "p_price": 6500,
+      "p_stock": 16,
+      "p_image": "https://images.unsplash.com/photo-1612450844493-f14d8d3f66f0?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional clay court tennis shoes with enhanced grip and stability."
+    },
+    {
+      "id": "E036_Fa",
+      "p_name": "Silk Scarf Luxury",
+      "p_price": 3200,
+      "p_stock": 22,
+      "p_image": "https://images.unsplash.com/photo-1601052900704-7193f462725e?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Luxury silk scarf with hand-painted floral design and hand-rolled edges."
+    },
+    {
+      "id": "E037_El",
+      "p_name": "Wireless Earbuds Pro",
+      "p_price": 4500,
+      "p_stock": 30,
+      "p_image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Premium wireless earbuds with active noise cancellation and spatial audio."
+    },
+    {
+      "id": "E038_Sp",
+      "p_name": "Basketball Official",
+      "p_price": 1400,
+      "p_stock": 25,
+      "p_image": "https://images.unsplash.com/photo-1519861531473-9200362f46b3?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Official size 7 basketball with professional grip and indoor/outdoor use."
+    },
+    {
+      "id": "E039_Fa",
+      "p_name": "Wool Coat Classic",
+      "p_price": 3800,
+      "p_stock": 10,
+      "p_image": "https://images.unsplash.com/photo-1544022613-e87ca75a784a?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Classic wool coat with modern tailoring and water-resistant finish."
+    },
+    {
+      "id": "E040_El",
+      "p_name": "Smart Watch Ultra",
+      "p_price": 5500,
+      "p_stock": 25,
+      "p_image": "https://images.unsplash.com/photo-1544117518-30dd5ff7a9b0?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Advanced smartwatch with health monitoring, GPS, and cellular connectivity."
+    },
+    {
+      "id": "E041_Sp",
+      "p_name": "Golf Balls Premium",
+      "p_price": 900,
+      "p_stock": 50,
+      "p_image": "https://images.unsplash.com/photo-1592656094267-764a45159575?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Premium golf balls with urethane cover and advanced aerodynamics."
+    },
+    {
+      "id": "E042_Fa",
+      "p_name": "Designer Jeans",
+      "p_price": 2800,
+      "p_stock": 20,
+      "p_image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Premium designer jeans with custom fit and premium denim fabric."
+    },
+    {
+      "id": "E043_HL",
+      "p_name": "Air Fryer Digital",
+      "p_price": 3500,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1621272791799-a4a03f46a6e9?q=80&w=800",
+      "p_category": "Home & Living",
+      "p_description": "Digital air fryer with multiple presets and large capacity basket."
+    },
+    {
+      "id": "E044_Sp",
+      "p_name": "Soccer Ball Professional",
+      "p_price": 1200,
+      "p_stock": 30,
+      "p_image": "https://images.unsplash.com/photo-1614632537190-23e4141777db?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional soccer ball with official size and weight specifications."
+    },
+    {
+      "id": "E045_Fa",
+      "p_name": "Leather Boots Premium",
+      "p_price": 4200,
+      "p_stock": 12,
+      "p_image": "https://images.unsplash.com/photo-1520639889457-7ef864816827?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Premium leather boots with waterproof construction and comfort lining."
+    },
+    {
+      "id": "E046_El",
+      "p_name": "Smart Speaker System",
+      "p_price": 4500,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Multi-room smart speaker system with voice control and deep bass."
+    },
+    {
+      "id": "E047_Sp",
+      "p_name": "Tennis Racket Professional",
+      "p_price": 7500,
+      "p_stock": 10,
+      "p_image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Professional tournament-grade tennis racket with advanced materials."
+    },
+    {
+      "id": "E048_Fa",
+      "p_name": "Silk Dress Evening",
+      "p_price": 4500,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Elegant evening silk dress with crystal details and floor-length design."
+    },
+    {
+      "id": "E049_El",
+      "p_name": "Electric Toothbrush",
+      "p_price": 800,
+      "p_stock": 35,
+      "p_image": "https://images.unsplash.com/photo-1559591937-e62030999557?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Smart electric toothbrush with pressure sensors and multiple cleaning modes."
+    },
+    {
+      "id": "E050_Sp",
+      "p_name": "Running Shoes Trail",
+      "p_price": 7500,
+      "p_stock": 14,
+      "p_image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Trail running shoes with aggressive tread and rock plate protection."
+    },
+    {
+      "id": "E051_Fa",
+      "p_name": "Cashmere Cardigan",
+      "p_price": 3200,
+      "p_stock": 8,
+      "p_image": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Cozy cashmere cardigan with wooden buttons and patch pockets."
+    },
+    {
+      "id": "E052_El",
+      "p_name": "Gaming Laptop",
+      "p_price": 85000,
+      "p_stock": 8,
+      "p_image": "https://images.unsplash.com/photo-1587202377405-8361659ac043?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "High-performance gaming laptop with RTX graphics and RGB keyboard."
+    },
+    {
+      "id": "E053_Sp",
+      "p_name": "Yoga Mat Eco",
+      "p_price": 800,
+      "p_stock": 40,
+      "p_image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Eco-friendly yoga mat made from recycled materials with non-slip surface."
+    },
+    {
+      "id": "E054_Fa",
+      "p_name": "Designer Handbag",
+      "p_price": 3800,
+      "p_stock": 18,
+      "p_image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Designer handbag with multiple compartments and premium hardware."
+    },
+    {
+      "id": "E055_El",
+      "p_name": "Smart Home Hub",
+      "p_price": 3200,
+      "p_stock": 20,
+      "p_image": "https://images.unsplash.com/photo-1558002038-103792e07927?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Central smart home hub with voice control and device management."
+    },
+    {
+      "id": "E056_Sp",
+      "p_name": "Mountain Bike Electric",
+      "p_price": 45000,
+      "p_stock": 6,
+      "p_image": "https://images.unsplash.com/photo-1571068316341-75042b44a4aa?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Electric mountain bike with 500W motor and 80km range."
+    },
+    {
+      "id": "E057_Fa",
+      "p_name": "Wool Sweater Nordic",
+      "p_price": 2800,
+      "p_stock": 15,
+      "p_image": "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Nordic pattern wool sweater with reinforced elbows and crew neck."
+    },
+    {
+      "id": "E058_El",
+      "p_name": "Wireless Charger Fast",
+      "p_price": 1500,
+      "p_stock": 45,
+      "p_image": "https://images.unsplash.com/photo-1616447814982-f56557876a1d?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Fast wireless charger with multiple device support and safety features."
+    },
+    {
+      "id": "E059_Sp",
+      "p_name": "Golf Clubs Set",
+      "p_price": 2500,
+      "p_stock": 12,
+      "p_image": "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=800",
+      "p_category": "Sports",
+      "p_description": "Complete golf club set with custom fitting and premium shafts."
+    },
+    {
+      "id": "E060_Fa",
+      "p_name": "Silk Scarf Designer",
+      "p_price": 2500,
+      "p_stock": 35,
+      "p_image": "https://images.unsplash.com/photo-1589133880447-0e6d5e165415?q=80&w=800",
+      "p_category": "Fashion",
+      "p_description": "Designer silk scarf with abstract pattern and hand-rolled edges."
+    },
+    {
+      "id": "E061_El",
+      "p_name": "iPhone 17 Pro 512 GB",
+      "p_price": 85000,
+      "p_stock": 52,
+      "p_image": "https://images.unsplash.com/photo-1696446702183-cbd13d789078?q=80&w=800",
+      "p_category": "Electronic",
+      "p_description": "Apple iPhone 17 Pro 512 GB: 15.93 cm (6.3″) Display with Promotion up to 120Hz, A19 Pro Chip, Breakthrough Battery Life, Pro Fusion Camera System with Center Stage Front Camera; Cosmic Orange"
+    }
+  ],
+  "cart": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
